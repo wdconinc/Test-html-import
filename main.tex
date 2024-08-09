@@ -1,0 +1,37 @@
+\documentclass{article}
+\usepackage{graphicx}
+
+\title{Test html import}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Attempt at direct download with .latexmkrc}
+%
+\immediate\write18{ls /bin/wget > demo.out}
+\immediate\write18{/bin/wget https://github.com/eic/EICrecon/raw/main/docs/demo.png 2>> demo.out}
+\input{demo.out}
+
+\includegraphics[width=0.8\textwidth]{demo.png}
+
+\subsection*{Attempt at adding submodule}
+
+\begin{verbatim}
+remote: error: invalid git repo
+remote: 
+remote: hint: Your Git repository contains a reference we cannot resolve.
+remote: hint: If your project contains a Git submodule,
+remote: hint: please remove it and try again.
+\end{verbatim}
+
+\subsection*{Attempt at adding subtree}
+
+\begin{verbatim}
+git subtree add --prefix EICrecon https://github.com/eic/EICrecon.git main --squash
+git subtree push --prefix EICrecon https://github.com/eic/EICrecon.git main
+\end{verbatim}
+
+\includegraphics[width=0.8\textwidth]{EICrecon/docs/demo.png}
+
+\end{document}
